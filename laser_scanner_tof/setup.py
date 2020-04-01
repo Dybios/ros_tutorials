@@ -3,7 +3,7 @@ from setuptools import setup, Extension
 extension = Extension(
     'vl53l0x_python',
     define_macros=[],
-    include_dirs=['.', 'include/${PROJECT_NAME}/Api/core/inc', 'include/${PROJECT_NAME}/platform/inc'],
+    include_dirs=['.', 'include/${PROJECT_NAME}/Api/core/inc', 'include/${PROJECT_NAME}/Api/platform/inc'],
     libraries=[],
     library_dirs=[],
     sources=['include/${PROJECT_NAME}/Api/core/src/vl53l0x_api_calibration.c',
