@@ -8,6 +8,7 @@ project(laser_scanner_tof)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  roscpp
   rospy
 )
 
@@ -18,7 +19,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
+catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -103,7 +104,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES laser_scanner_tof
-#  CATKIN_DEPENDS rospy
+   CATKIN_DEPENDS rospy roscpp
 #  DEPENDS system_lib
 )
 
@@ -111,10 +112,13 @@ catkin_package(
 ## Build ##
 ###########
 
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
 # include
+  include/${PROJECT_NAME}/Api/core/inc/
+  include/${PROJECT_NAME}/Api/platform/inc/
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -144,7 +148,8 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
+# target_link_libraries(ros_tof_laser_scanner
+#   vl53l0x_python
 #   ${catkin_LIBRARIES}
 # )
 
@@ -158,8 +163,8 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 # install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#    scripts/your_script_file
+#    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
 
 ## Mark executables for installation
